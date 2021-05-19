@@ -66,13 +66,13 @@ void m2avanza() {
   }
 
 void m1lento() {
-  analogWrite(enB,50);
+  analogWrite(enB,80);
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
   }
 
 void m2lento() {
-  analogWrite(enA,50);
+  analogWrite(enA,80);
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
   }
