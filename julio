@@ -1,27 +1,37 @@
-int EchoPin = 3;
-int TriggerPin = 2;
+#include <afstandssensor.h>
+
+AfstandsSensor afstandssensor1(2, 3);
+AfstandsSensor afstandssensor2(13, 12);
+
+unsigned long t;
+unsigned long tant;
+unsigned long tfin;
+
 
 void setup() {
-   Serial.begin(9600);
-   pinMode(TriggerPin, OUTPUT);
-   pinMode(EchoPin, INPUT);
+Serial.begin(9600);
 }
+
 void loop() {
-   int cm = ping(TriggerPin, EchoPin);
-   Serial.print("Distancia: ");
-   Serial.println(cm);
-   delay(1000);
+Serial.print("sensor1=");
+Serial.println(afstandssensor1.afstandCM());
+Serial.print("sensor2=");
+Serial.println(afstandssensor2.afstandCM());
+Serial.print("t=");
+Serial.println(t);
+Serial.print("tant=");
+Serial.println(tant);
+Serial.print("tfin=");
+Serial.println(tfin);
+delay(500);
+t = millis();
+
+if((afstandssensor1.afstandCM()<150) && (afstandssensor2.afstandCM()>150)){
+  tant=t;
 }
-int ping(int TriggerPin, int EchoPin) {
-   long duration, distanceCm;
-   
-   digitalWrite(TriggerPin, LOW);  //para generar un pulso limpio ponemos a LOW 4us
-   delayMicroseconds(4);
-   digitalWrite(TriggerPin, HIGH);  //generamos Trigger (disparo) de 10us
-   delayMicroseconds(10);
-   digitalWrite(TriggerPin, LOW);
-   
-   duration = pulseIn(EchoPin, HIGH);  //medimos el tiempo entre pulsos, en microsegundos
-   
-   distanceCm = duration * 10 / 292/ 2; 
+if((afstandssensor1.afstandCM()>150) && (afstandssensor2.afstandCM()<150)){
+  t-tant==tfin;
+}
+
+
 }
